@@ -11,9 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150726015028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.text     "body"
+    t.integer  "vote_count",  default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cities", force: true do |t|
+    t.string   "name"
+    t.string   "country"
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "city_id"
+    t.string   "title"
+    t.text     "body"
+    t.integer  "vote_count", default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
